@@ -96,10 +96,13 @@ change.innerHTML = extractrgbb();
       if(g===chosencolor && counter ===1){
         gametext.innerHTML = "Killed it !"
       }
+      if(g!==chosencolor && counter ===5){
+        gametext.innerHTML = "YOU LOST GAME!!"
+      }
 
       console.log("counter= "+ counter);
 
-      if (counter === 5 || counter === 6){
+      if (counter === 6){
         gametext.innerHTML = "YOU LOST GAME!!"
       } 
 
