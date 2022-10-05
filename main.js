@@ -99,7 +99,7 @@ change.innerHTML = extractrgbb();
 
       console.log("counter= "+ counter);
 
-      if (counter === 5){
+      if (counter === 5 || counter === 6){
         gametext.innerHTML = "YOU LOST GAME!!"
       } 
 
