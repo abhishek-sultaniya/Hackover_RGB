@@ -34,45 +34,53 @@ colors=allcardcolor();
 // extractrgbb();
 
 // THIS FOR LOOP ASSIGNS COLOR TO CARDS BY STULE
-  for(var i = 0; i < cardnumbers; i++) 
-{
+  for(var i = 0; i < cardnumbers; i++){
     var card = allCardElements[i];
     card.style.background=colors[i];
     console.log(colors[i]);
 }
 
 change.innerHTML = extractrgbb();
-  function extractrgbb()
-  {
+  function extractrgbb(){
       var a=colors[(Math.floor(Math.random()*cardnumbers))];
       chosencolor=a;
     //   var a=colors[0];
-      console.log(chosencolor);
+      console.log("Ans= "+chosencolor);
       return a;
   }
-
-  for(var i = 0; i <cardnumbers; i++) 
-{
+ 
+  for(var i = 0; i <cardnumbers; i++){
     var card = allCardElements[i];
     console.log("inside1");
     card.addEventListener("click",function(e)
     {
         cardClicked(this);
+        // counter += 1;
     });
   }
 
-  function cardClicked(cardE)
-  {
+  var counter = 0;
+
+  function cardClicked(cardE){
     // console.log(colors[i]);
     var g=cardE.style.background;
     console.log(g);
     console.log(cardE);
+    
     // console.log("chosen colo");
     // console.log(chosencolor);
 
-      if(g===chosencolor)
-      {
-        console.log("condition checked");
+
+    
+      if(g!==chosencolor){
+        counter += 1;
+        gametext.innerHTML = "OOPS! Wrong Guess";
+        cardE.style.visibility="hidden";
+        console.log("wrong card clicked");
+      }
+      else{
+        counter += 1;
+        console.log("Guessed Correctly");
         toppart.style.background=chosencolor;
 
         for(var i = 0; i <cardnumbers; i++) 
@@ -84,12 +92,21 @@ change.innerHTML = extractrgbb();
         gametext.innerHTML = "YOU WON !!";
         newgame.innerHTML = "Play Again!!!";
       }
-      else
-      {
-          cardE.style.visibility="hidden";
-          console.log("condition checked22");
-          // setTimeout( function ( ) { alert( "moo" ); }, 50 ); 
+
+      if(g===chosencolor && counter ===1){
+        gametext.innerHTML = "Killed it !"
       }
+      if(g!==chosencolor && counter ===5){
+        gametext.innerHTML = "YOU LOST GAME!!"
+      }
+
+      console.log("counter= "+ counter);
+
+      if (counter === 6){
+        gametext.innerHTML = "YOU LOST GAME!!"
+      } 
+
+      
   }
 
   function colorGenerator()
